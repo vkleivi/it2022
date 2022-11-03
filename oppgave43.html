@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <script>
+    let passord = ("Jonathan")
+    let gjett = prompt("Hva er passordet)")
+
+    if(gjett==passord){
+        document.write("Du skrev riktig passord!")
+    }
+    else if(gjett=="?lengde"){
+        document.write("Lengden er " + passord.length)
+    }
+    else if(gjett=="?1"){
+        document.write("Første bokstav er " + passord[0])
+    }
+    else if(gjett="?2"){
+        document.write("Andre bokstav er " + passord[1])
+    }
+    else if(gjett="?siste"){
+        document.write("Siste bokstav er " + passord[7])
+    }
+    else if(gjett="?store"){
+        document.write("Hele passordet i store bokstaver er " + passord.toUpperCase())
+    }
+    else if(gjett="?små"){
+        document.write("Hele passordet i små bokstaver er " + passord.toLowerCase())
+    }
+    else{
+        document.write("Passordet er feil")
+    }
+  </script>
+   
+</body>
+</html>
