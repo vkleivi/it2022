@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yatzy!</title>
+
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid rgba(red, green, blue, alpha);
+            padding: 8px;
+        }
+        thead > tr {
+            background-color: antiquewhite;
+            color: cadetblue;
+        }
+        tbody > tr:nth-child(odd) {
+            background-color: beige;
+        }
+        body {
+            background-color:blanchedalmond;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        #hoved {
+            margin: 20px;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid black;
+        }
+        h1 {
+            font-family: 'Times New Roman', Times, serif;
+        }
+    </style>
+</head>
+<body>
+    <button id="btnTerning1">0</button>
+    <button id="btnTerning2">0</button>
+    <button id="btnTerning3">0</button>
+    <button id="btnTerning4">0</button>
+    <button id="btnTerning5">0</button>
+    <input id="HoldT1" type="checkbox">
+    <input id="HoldT2" type="checkbox">
+    <input id="HoldT3" type="checkbox">
+    <input id="HoldT4" type="checkbox">
+    <input id="HoldT5" type="checkbox">
+
+    <button id="btnKastTerninger">Kast Terningene</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th colspan="4">Yatzy</th>
+            </tr>
+            <tr>
+                <th>Spillere</th>
+                <th>Spiller 1</th>
+                <th>Spiller 2</th>
+                <th>Spiller 3</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Enere</td>
+                <td id="Spiller1Enere"></td>
+                <td id="Spiller2Enere"></td>
+                <td id="Spiller3Enere"></td>
+            </tr>
+            <tr>
+                <td>Toere</td>
+                <td id="Spiller1Toere"></td>
+                <td id="Spiller2Toere"></td>
+                <td id="Spiller3Toere"></td>
+            </tr>
+            <tr>
+                <td>Treere</td>
+                <td id="Spiller1Treere"></td>
+                <td id="Spiller2Treere"></td>
+                <td id="Spiller3Treere"></td>
+            </tr>
+            <tr>
+                <td>Firere</td>
+                <td id="Spiller1Firere"></td>
+                <td id="Spiller2Firere"></td>
+                <td id="Spiller3Firere"></td>
+            </tr>
+            <tr>
+                <td>Femere</td>
+                <td id="Spiller1Femmere"></td>
+                <td id="Spiller2Femmere"></td>
+                <td id="Spiller3Femmere"></td>
+            </tr>
+            <tr>
+                <td>Seksere</td>
+                <td id="Spiller1Seksere"></td>
+                <td id="Spiller2Seksere"></td>
+                <td id="Spiller3Seksere"></td>
+            </tr>
+            <tr>
+                <td>Sum</td>
+                <td id="Spiller1Sum"></td>
+                <td id="Spiller2Sum"></td>
+                <td id="Spiller3Sum"></td>
+            </tr>
+            <tr>
+                <td>Bonus</td>
+                <td id="Spiller1Bonus"></td>
+                <td id="Spiller2Bonus"></td>
+                <td id="Spiller3Bonus"></td>
+            </tr>
+            <tr>
+                <td>Ett par</td>
+                <td id="Spiller1EttPar"></td>
+                <td id="Spiller2EttPar"></td>
+                <td id="Spiller3EttPar"></td>
+            </tr>
+            <tr>
+                <td>To par</td>
+                <td id="Spiller1ToPar"></td>
+                <td id="Spiller2ToPar"></td>
+                <td id="Spiller3ToPar"></td>
+            </tr>
+            <tr>
+                <td>Tre like</td>
+                <td id="Spiller1TreLike"></td>
+                <td id="Spiller2TreLike"></td>
+                <td id="Spiller3TreLike"></td>
+            </tr>
+            <tr>
+                <td>Liten straight</td>
+                <td id="Spiller1LitenStraight"></td>
+                <td id="Spiller2LitenStraight"></td>
+                <td id="Spiller3LitenStraight"></td>
+            </tr>
+            <tr>
+                <td>Stor straight</td>
+                <td id="Spiller1StorStraight"></td>
+                <td id="Spiller2StorStraight"></td>
+                <td id="Spiller3StorStraight"></td>
+            </tr>
+            <tr>
+                <td>Hus</td>
+                <td id="Spiller1Hus"></td>
+                <td id="Spiller2Hus"></td>
+                <td id="Spiller3Hus"></td>
+            </tr>
+            <tr>
+                <td>Sjanse</td>
+                <td id="Spiller1Sjanse"></td>
+                <td id="Spiller2Sjanse"></td>
+                <td id="Spiller3Sjanse"></td>
+            </tr>
+            <tr>
+                <td>Yatzy</td>
+                <td id="Spiller1Yatzy"></td>
+                <td id="Spiller2Yatzy"></td>
+                <td id="Spiller3Yatzy"></td>
+            </tr>
+            <tr>
+                <td>Total sum</td>
+                <td id="Spiller1TotalSum"></td>
+                <td id="Spiller2TotalSum"></td>
+                <td id="Spiller3TotalSUm"></td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        let btnTerning1 = document.getElementById("btnTerning1");
+        let btnTerning2 = document.getElementById("btnTerning2");
+        let btnTerning3 = document.getElementById("btnTerning3");
+        let btnTerning4 = document.getElementById("btnTerning4");
+        let btnTerning5 = document.getElementById("btnTerning5");
+        let btnKastTerninger = document.getElementById("btnKastTerninger")
+        let HoldT1 = document.getElementById("HoldT1")
+        let HoldT2 = document.getElementById("HoldT2")
+        let HoldT3 = document.getElementById("HoldT3")
+        let HoldT4 = document.getElementById("HoldT4")
+        let HoldT5 = document.getElementById("HoldT5")
+
+        let Spiller1Enere = document.getElementById("Spiller1Enere")
+        let Spiller2Enere = document.getElementById("Spiller2Enere")
+        let Spiller3Enere = document.getElementById("Spiller3Enere")
+        let Spiller1Toere = document.getElementById("Spiller1Toere")
+        let Spiller2Toere = document.getElementById("Spiller2Toere")
+        let Spiller3Toere = document.getElementById("Spiller3Toere")
+        let Spiller1Treere = document.getElementById("Spiller1Treere")
+        let Spiller2Treere = document.getElementById("Spiller2Treere")
+        let Spiller3Treere = document.getElementById("Spiller3Treere")
+        let Spiller1Firere = document.getElementById("Spiller1Firere")
+        let Spiller2Firere = document.getElementById("Spiller2Firere")
+        let Spiller3Firere = document.getElementById("Spiller3Firere")
+
+        let Terning1;
+        let Terning2;
+        let Terning3;
+        let Terning4;
+        let Terning5;
+
+        function kastTerninger() {
+            return kastTerning1() + kastTerning2() + kastTerning3() + kastTerning4() + kastTerning5();
+        }
+        btnKastTerninger.onclick = kastTerninger
+
+        function kastTerning1() {
+            if(HoldT1.checked == false) {
+                Terning1 = parseInt(Math.random()*6) + 1
+                btnTerning1.innerHTML = Terning1
+            }
+        }
+        function kastTerning2() {
+            if(HoldT2.checked == false) {
+                Terning2 = parseInt(Math.random()*6) + 1
+                btnTerning2.innerHTML = Terning2
+            }
+        }
+        function kastTerning3() {
+            if(HoldT3.checked == false) {
+                Terning3 = parseInt(Math.random()*6) + 1
+                btnTerning3.innerHTML = Terning3
+            }
+        }
+        function kastTerning4() {
+            if(HoldT4.checked == false) {
+                Terning4 = parseInt(Math.random()*6) + 1
+                btnTerning4.innerHTML = Terning4
+            }
+        }
+        function kastTerning5() {
+            if(HoldT5.checked == false) {
+                Terning5 = parseInt(Math.random()*6) + 1
+                btnTerning5.innerHTML = Terning5
+            }
+        }
+
+        function Spiller1ResultatEnere() {
+            ResultatSpiller1Enere=0
+            let Spiller1EnereArray = [Terning1, Terning2, Terning3, Terning4, Terning5]
+            for(let i = 0; i < Spiller1EnereArray.length; i++) {
+                if(Spiller1EnereArray[i]==1){
+                    ResultatSpiller1Enere+= Spiller1EnereArray[i];
+                }
+            }
+            Spiller1Enere.innerHTML = ResultatSpiller1Enere
+        }
+        Spiller1Enere.onclick = Spiller1ResultatEnere;
+        function Spiller2ResultatEnere() {
+            ResultatSpiller2Enere=0
+            let Spiller2EnereArray = [Terning1, Terning2, Terning3, Terning4, Terning5]
+            for(let i = 0; i < Spiller2EnereArray.length; i++) {
+                if(Spiller2EnereArray[i]==1){
+                    ResultatSpiller2Enere+= Spiller2EnereArray[i];
+                }
+            }
+            Spiller2Enere.innerHTML = ResultatSpiller2Enere
+        }
+        Spiller2Enere.onclick = Spiller2ResultatEnere;
+        function Spiller3ResultatEnere() {
+            ResultatSpiller3Enere=0
+            let Spiller3EnereArray = [Terning1, Terning2, Terning3, Terning4, Terning5]
+            for(let i = 0; i < Spiller3EnereArray.length; i++) {
+                if(Spiller3EnereArray[i]==1){
+                    ResultatSpiller3Enere+= Spiller3EnereArray[i];
+                }
+            }
+            Spiller3Enere.innerHTML = ResultatSpiller3Enere
+        }
+        Spiller3Enere.onclick = Spiller3ResultatEnere;
+
+        function Spiller1ResultatToere() {
+            ResultatSpiller1Toere=0
+            let Spiller1ToereArray = [Terning1, Terning2, Terning3, Terning4, Terning5]
+            for(let i = 0; i < Spiller1ToereArray.length; i++) {
+                if(Spiller1ToereArray[i]==2){
+                    ResultatSpiller1Toere+= Spiller1ToereArray[i];
+                }
+            }
+            Spiller1Toere.innerHTML = ResultatSpiller1Toere
+        }
+        Spiller1Toere.onclick = Spiller1ResultatToere;
+        function Spiller2ResultatToere() {
+            ResultatSpiller2Toere=0
+            let Spiller2ToereArray = [Terning1, Terning2, Terning3, Terning4, Terning5]
+            for(let i = 0; i < Spiller2ToereArray.length; i++) {
+                if(Spiller2ToereArray[i]==2){
+                    ResultatSpiller2Toere+= Spiller2ToereArray[i];
+                }
+            }
+            Spiller2Toere.innerHTML = ResultatSpiller2Toere
+        }
+        Spiller2Toere.onclick = Spiller2ResultatToere;
+        function Spiller3ResultatToere() {
+            ResultatSpiller3Toere=0
+            let Spiller3ToereArray = [Terning1, Terning2, Terning3, Terning4, Terning5]
+            for(let i = 0; i < Spiller3ToereArray.length; i++) {
+                if(Spiller3ToereArray[i]==2){
+                    ResultatSpiller3Toere+= Spiller3ToereArray[i];
+                }
+            }
+            Spiller3Toere.innerHTML = ResultatSpiller3Toere
+        }
+        Spiller3Toere.onclick = Spiller3ResultatToere;
+
+        function Spiller1ResultatTreere() {
+            ResultatSpiller1Treere=0
+            let Spiller1TreereArray = [Terning1, Terning2, Terning3, Terning4, Terning5]
+            for(let i = 0; i < Spiller1TreereArray.length; i++) {
+                if(Spiller1TreereArray[i]==3){
+                    ResultatSpiller1Treere+= Spiller1TreereArray[i];
+                }
+            }
+            Spiller1Treere.innerHTML = ResultatSpiller1Treere
+        }
+        Spiller1Treere.onclick = Spiller1ResultatTreere;
+       
+        function Spiller2ResultatTreere() {
+            ResultatSpiller2Treere=0
+            let Spiller2TreereArray = [Terning1, Terning2, Terning3, Terning4, Terning5]
+            for(let i = 0; i < Spiller2TreereArray.length; i++) {
+                if(Spiller2TreereArray[i]==3){
+                    ResultatSpiller2Treere+= Spiller2TreereArray[i];
+                }
+            }
+            Spiller2Treere.innerHTML = ResultatSpiller2Treere
+        }
+        Spiller2Treere.onclick = Spiller2ResultatTreere;
+       
+        function Spiller3ResultatTreere() {
+            ResultatSpiller3Treere=0
+            let Spiller3TreereArray = [Terning1, Terning2, Terning3, Terning4, Terning5]
+            for(let i = 0; i < Spiller3TreereArray.length; i++) {
+                if(Spiller3TreereArray[i]==3){
+                    ResultatSpiller3Treere+= Spiller3TreereArray[i];
+                }
+            }
+            Spiller3Treere.innerHTML = ResultatSpiller3Treere
+        }
+        Spiller3Treere.onclick = Spiller3ResultatTreere;
+
+        function Spiller1ResultatFirere() {
+            ResultatSpiller1Firere=0
+            let Spiller1FirereArray = [Terning1, Terning2, Terning3, Terning4, Terning5]
+            for(let i = 0; i < Spiller1FirereArray.length; i++) {
+                if(Spiller1FirereArray[i]==4){
+                    ResultatSpiller1Firere+= Spiller1FirereArray[i];
+                }
+            }
+           Spiller1Firere.innerHTML = ResultatSpiller1Firere
+        }
+        Spiller1Firere.onclick = Spiller1ResultatFirere;
+
+        function Spiller2ResultatFirere() {
+            ResultatSpiller2Firere=0
+            let Spiller2FirereArray = [Terning1, Terning2, Terning3, Terning4, Terning5]
+            for(let i = 0; i < Spiller2FirereArray.length; i++) {
+                if(Spiller2FirereArray[i]==4){
+                    ResultatSpiller2Firere+= Spiller2FirereArray[i];
+                }
+            }
+            Spiller2Firere.innerHTML = ResultatSpiller2Firere
+        }
+        Spiller2Firere.onclick = Spiller2ResultatFirere;
+        
+        function Spiller3ResultatFirere() {
+            ResultatSpiller3Firere=0
+            let Spiller3FirereArray = [Terning1, Terning2, Terning3, Terning4, Terning5]
+            for(let i = 0; i < Spiller3FirereArray.length; i++) {
+                if(Spiller3FirereArray[i]==4){
+                    ResultatSpiller3Firere+= Spiller3FirereArray[i];
+                }
+            }
+            Spiller3Firere.innerHTML = ResultatSpiller3Firere
+        }
+        Spiller3Firere.onclick = Spiller3ResultatFirere;
+
+        function Spiller1ResultatFemmere() {
+            ResultatSpiller1Femmere=0
+            let Spiller1FemmereArray = [Terning1, Terning2, Terning3, Terning4, Terning5]
+            for(let i = 0; i < Spiller1FemmereArray.length; i++) {
+                if(Spiller1FemmereArray[i]==5){
+                    ResultatSpiller1Femmere+= Spiller1FemmereArray[i];
+                }
+            }
+            Spiller1Femmere.innerHTML = ResultatSpiller1Femmere
+        }
+        Spiller1Femmere.onclick = Spiller1ResultatFemmere;
+
+        function Spiller2ResultatFemmere() {
+            ResultatSpiller2Femmere=0
+            let Spiller2FemmereArray = [Terning1, Terning2, Terning3, Terning4, Terning5]
+            for(let i = 0; i < Spiller2FemmereArray.length; i++) {
+                if(Spiller2FemmereArray[i]==5){
+                    ResultatSpiller2Femmere+= Spiller2FemmereArray[i];
+                }
+            }
+            Spiller2Femmere.innerHTML = ResultatSpiller2Femmere
+        }
+        Spiller2Femmere.onclick = Spiller2ResultatFemmere;
+
+        function Spiller3ResultatFemmere() {
+            ResultatSpiller3Femmere=0
+            let Spiller3FemmereArray = [Terning1, Terning2, Terning3, Terning4, Terning5]
+            for(let i = 0; i < Spiller3FemmereArray.length; i++) {
+                if(Spiller3FemmereArray[i]==5){
+                    ResultatSpiller3Femmere+= Spiller3FemmereArray[i];
+                }
+            }
+            Spiller3Femmere.innerHTML = ResultatSpiller3Femmere
+        }
+        Spiller3Femmere.onclick = Spiller3ResultatFemmere;
+
+        function Spiller1ResultatSeksere() {
+            ResultatSpiller1Seksere=0
+            let Spiller1SeksereArray = [Terning1, Terning2, Terning3, Terning4, Terning5]
+            for(let i = 0; i < Spiller1SeksereArray.length; i++) {
+                if(Spiller1SeksereArray[i]==6){
+                    ResultatSpiller1Seksere+= Spiller1SeksereArray[i];
+                }
+            }
+            Spiller1Seksere.innerHTML = ResultatSpiller1Seksere
+        }
+        Spiller1Seksere.onclick = Spiller1ResultatSeksere;
+
+        function Spiller2ResultatSeksere() {
+            ResultatSpiller2Seksere=0
+            let Spiller2SeksereArray = [Terning1, Terning2, Terning3, Terning4, Terning5]
+            for(let i = 0; i < Spiller2SeksereArray.length; i++) {
+                if(Spiller2SeksereArray[i]==6){
+                    ResultatSpiller2Seksere+= Spiller2SeksereArray[i];
+                }
+            }
+            Spiller2Seksere.innerHTML = ResultatSpiller2Seksere
+        }
+        Spiller2Seksere.onclick = Spiller2ResultatSeksere;
+
+        function Spiller3ResultatSeksere() {
+            ResultatSpiller3Seksere=0
+            let Spiller3SeksereArray = [Terning1, Terning2, Terning3, Terning4, Terning5]
+            for(let i = 0; i < Spiller3SeksereArray.length; i++) {
+                if(Spiller3SeksereArray[i]==6){
+                    ResultatSpiller3Seksere+= Spiller3SeksereArray[i];
+                }
+            }
+            Spiller3Seksere.innerHTML = ResultatSpiller3Seksere
+        }
+        Spiller3Seksere.onclick = Spiller3ResultatSeksere;
+
+        function P1Sum() {
+            sumP1 = ResultatSpiller1Enere + ResultatSpiller1Toere + ResultatSpiller1Treere + ResultatSpiller1Firere + ResultatSpiller1Femmere + ResultatSpiller1Seksere
+            Spiller1Sum.innerHTML = sumP1
+        }
+        Spiller1Sum.onclick = P1Sum;
+
+        function P2Sum() {
+            sumP2 = ResultatSpiller2Enere + ResultatSpiller2Toere + ResultatSpiller2Treere + ResultatSpiller2Firere + ResultatSpiller2Femmere + ResultatSpiller2Seksere
+            Spiller2Sum.innerHTML = sumP2
+        }
+        Spiller2Sum.onclick = P2Sum;
+
+        function P3Sum() {
+            sumP3 = ResultatSpiller3Enere + ResultatSpiller3Toere + ResultatSpiller3Treere + ResultatSpiller3Firere + ResultatSpiller3Femmere + ResultatSpiller3Seksere
+            Spiller3Sum.innerHTML = sumP3
+        }
+        Spiller3Sum.onclick = P3Sum;
+        
+        function BonusP1() {
+            let BonusSpiller1 = 50
+            let BonusSpiller1Taper = 0
+            if (sumP1>= 63) {
+                Spiller1Bonus.innerHTML = BonusSpiller1
+            }
+            else {
+                Spiller1Bonus.innerHTML = BonusSpiller1Taper
+            }
+        }
+        Spiller1Bonus.onclick = BonusP1
+
+        function BonusP2() {
+            let BonusSpiller2 = 50
+            let BonusSpiller2Taper = 0
+            if (P2Sum > 63) {
+                Spiller2Bonus.innerHTML = BonusSpiller2
+            }
+            else {
+                Spiller2Bonus.innerHTML = BonusSpiller2Taper
+            }
+        }
+        Spiller2Bonus.onclick = BonusP2
+
+        function BonusP3() {
+            let BonusSpiller3 = 50
+            let BonusSpiller3Taper = 0
+            if (P3Sum > 63) {
+                Spiller3Bonus.innerHTML = BonusSpiller3
+            }
+            else {
+                Spiller3Bonus.innerHTML = BonusSpiller3Taper
+            }
+        }
+        Spiller3Bonus.onclick = BonusP3
+    </script>
+</body>
+</html>
