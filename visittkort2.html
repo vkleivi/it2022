@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <label for="navn">Navn:</label>
+        <input type="text" id="navn"><br>
+
+        <label for="kjonn">Kjønn:</label>
+        <input type="text" id="kjonn"><br>
+
+        <label for="stilling">Stilling:</label>
+        <input type="text" id="stilling"><br>
+
+        <label for="telefon">Telefonnummer:</label>
+        <input type="text" id="telefon"><br>
+
+        <label for="forerkort">Har du forerkort:</label>
+        <input type="checkbox" id="forerkort"><br>
+
+        <label for="bakgrunnsfarge">Bakgrunnsfarge:</label>
+        <input type="color" id="bakgrunn"><br>
+
+        <label for="fodselsdato">Fødselsdato:</label>
+        <input type="text" id="fodselsdato"><br>
+
+        <button type="button" id="lagVisittkort" >Lag visittkort</button>
+<div id="bakgrunnsfarge" style="padding: 10px; margin: 5px; width: 290px; height: 160px;">
+        <h4 id="kort_navn" style="margin: 0; padding: 5px;"> Navn </h4>
+        <p id="kort_kjonn" style="margin: 0; padding: 5px;"> Kjønn </p>
+        <p id="kort_stilling" style="margin: 0; padding: 5px;"> Stilling </p>
+        <p id="kort_telefon" style="margin: 0; padding: 5px;"> Telefon </p>
+        <p id="kort_forerkort" style="margin: 0; padding: 5px;"> Førerkort </p>
+        <p id="kort_fodselsdato" style="margin: 0; padding: 5px;"> Fødselsdato </p>
+</div>
+
+    </form>
+
+    <script>
+        let navn = document.getElementById("navn")
+        let kort_navn = document.getElementById("kort_navn")
+
+        let kjonn = document.getElementById("kjonn")
+        let kort_kjonn = document.getElementById("kort_kjonn")
+
+        let stilling = document.getElementById("stilling")
+        let kort_stilling = document.getElementById("kort_stilling")
+
+        let telefon = document.getElementById("telefon")
+        let kort_telefon = document.getElementById("kort_telefon")
+
+        let forerkort = document.getElementById("forerkort")
+        let kort_forerkort = document.getElementById("kort_forerkort")
+
+        let fodselsdato = document.getElementById("fodselsdato")
+        let kort_fodselsdato = document.getElementById("kort_fodselsdato")
+
+
+        let lagVisittkort = document.getElementById("lagVisittkort")
+
+        function lagreInformasjon() {
+            kort_navn.innerHTML = navn.value
+            kort_kjonn.innerHTML = kjonn.value
+            kort_stilling.innerHTML = stilling.value
+            kort_telefon.innerHTML = telefon.value
+            kort_fodselsdato.innerHTML = fodselsdato.value
+        }
+        function harForerkort() {
+            if(forerkort.checked == true) {
+                kort_forerkort.innerHTML = "Har førerkort"
+            }
+            else {
+                kort_forerkort.innerHTML = ""
+            }
+        }
+        function bakgrunnsFarge() {
+            bakgrunnsfarge.style.backgroundColor = bakgrunn.value
+        }
+        forerkort.addEventListener("change",harForerkort)
+        navn.addEventListener("click", lagreInformasjon)
+        kjonn.addEventListener("click", lagreInformasjon)
+        stilling.addEventListener("click", lagreInformasjon)
+        telefon.addEventListener("click", lagreInformasjon)
+        fodselsdato.addEventListener("click", lagreInformasjon)
+        bakgrunn.addEventListener("change", bakgrunnsFarge)
+
+
+    </script>
+</body>
+</html>
